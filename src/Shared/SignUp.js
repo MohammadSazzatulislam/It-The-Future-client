@@ -1,6 +1,46 @@
 import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
+
+  const [userInfo, setUserInfo] = useState({
+    name: '',
+    photoURL: '',
+    email: '',
+    password: ''
+
+  })
+
+
+  const handleSubmit = e => {
+    e.preventDefaule()
+    const form = e.target.value
+
+
+
+
+  }
+
+  const handleNameChange = e => {
+    const name = e.target.value;
+    setUserInfo({...userInfo, name:name})
+  }
+  const handlePhotoURLChange = e => {
+    const photoURL = e.target.value;
+    setUserInfo({...userInfo, photoURL:photoURL})
+  }
+  const handleEmailChange = e => {
+    const email = e.target.value;
+    setUserInfo({...userInfo, email:email})
+  }
+  const handlePasswordChange = e => {
+    const password = e.target.value;
+    setUserInfo({...userInfo, password:password})
+  }
+
+
+
     return (
       <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
         <div className="flex flex-col items-center justify-center">
@@ -24,14 +64,29 @@ const SignUp = () => {
             <p className="text-2xl font-extrabold leading-6 text-gray-800">
               Sign Up to your account
             </p>
-            <form>
+            <form onClick={handleSubmit}>
               <div className=" mt-10">
                 <label className="text-sm font-medium leading-none text-gray-800">
-                  Name
+                  Full Name
                 </label>
                 <input
-                  
-                  placeholder="enter your name"
+                  value={userInfo.name}
+                  onChange={handleNameChange}
+                  required
+                  placeholder="enter your full name"
+                  type="text"
+                  className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                />
+              </div>
+              <div className=" mt-10">
+                <label className="text-sm font-medium leading-none text-gray-800">
+                  Photo URL
+                </label>
+                <input
+                  value={userInfo.photoURL}
+                  required
+                  onChange={handlePhotoURLChange}
+                  placeholder="enter your photoURL"
                   type="text"
                   className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
@@ -41,7 +96,8 @@ const SignUp = () => {
                   Email
                 </label>
                 <input
-                  
+                  value={userInfo.email}
+                  onChange={handleEmailChange}
                   required
                   placeholder="enter email address"
                   type="email"
@@ -54,7 +110,8 @@ const SignUp = () => {
                 </label>
                 <div className="relative flex items-center justify-center">
                   <input
-                    
+                    value={userInfo.password}
+                    onChange={handlePasswordChange}
                     required
                     placeholder="enter Password"
                     type="password"
@@ -83,14 +140,16 @@ const SignUp = () => {
               </div>
               <p className="text-sm mt-4 font-medium leading-none text-gray-500">
                 Already have account?
-                <span
-                  tabIndex={0}
-                  role="link"
-                  aria-label="Sign up here"
-                  className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer"
-                >
-                  Log In here
-                </span>
+                <Link to='/login'>
+                  <span
+                    tabIndex={0}
+                    role="link"
+                    aria-label="Sign up here"
+                    className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer"
+                  >
+                    Log In here
+                  </span>
+                </Link>
               </p>
             </form>
             <div className="w-full flex items-center justify-between py-5">

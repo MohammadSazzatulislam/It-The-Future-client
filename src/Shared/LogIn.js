@@ -1,6 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 const LogIn = () => {
+
+  
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefaule();
+    const form = e.target.value;
+  };
+
+  const handleEmailChange = (e) => {
+    const email = e.target.value;
+    setUserInfo({ ...userInfo, email: email });
+  };
+  const handlePasswordChange = (e) => {
+    const password = e.target.value;
+    setUserInfo({ ...userInfo, password: password });
+  };
+
     return (
       <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
         <div className="flex flex-col items-center justify-center">
@@ -24,13 +46,14 @@ const LogIn = () => {
             <p className="text-2xl font-extrabold leading-6 text-gray-800">
               Log In to your account
             </p>
-            <form >
+            <form onClick={handleSubmit}>
               <div className="mt-10">
                 <label className="text-sm font-medium leading-none text-gray-800">
                   Email
                 </label>
                 <input
-                  
+                  value={userInfo.email}
+                  onChange={handleEmailChange}
                   required
                   placeholder="enter email address"
                   type="email"
@@ -43,7 +66,8 @@ const LogIn = () => {
                 </label>
                 <div className="relative flex items-center justify-center">
                   <input
-                   
+                    value={userInfo.password}
+                    onChange={handlePasswordChange}
                     required
                     placeholder="enter Password"
                     type="password"
@@ -72,14 +96,16 @@ const LogIn = () => {
               </div>
               <p className="text-sm mt-4 font-medium leading-none text-gray-500">
                 Don't have account?
-                <span
-                  tabIndex={0}
-                  role="link"
-                  aria-label="Sign up here"
-                  className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer"
-                >
-                  Sign Up here
-                </span>
+                <Link to="/signup">
+                  <span
+                    tabIndex={0}
+                    role="link"
+                    aria-label="Sign up here"
+                    className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer"
+                  >
+                    Sign Up here
+                  </span>
+                </Link>
               </p>
             </form>
             <div className="w-full flex items-center justify-between py-5">
