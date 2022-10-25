@@ -8,7 +8,7 @@ const Courses = () => {
 
     return (
       <div className="bg-gray-100 flex gap -5 ">
-        <div className="w-52 py-8 lg:inline-block hidden border-2 border-blue-500">
+        <div className="w-80  py-8 lg:inline-block hidden p-5 border-2 border-blue-500">
                 <LeftSideNav></LeftSideNav>
         </div>
         <div className="mx-auto container py-8 border-2 border-blue-500">

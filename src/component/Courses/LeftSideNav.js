@@ -17,8 +17,8 @@ const LeftSideNav = () => {
       <h1 className="text-xl font-bold ">Categories</h1>
       {products.map((product) => (
         <div key={product.id}>
-          <Link to='/product/:id'>
-            <p>{product.name}</p>
+          <Link to={`/details/${product.id}`}>
+            <li>{product.name}</li>
           </Link>
         </div>
       ))}

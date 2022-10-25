@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Blog from "../component/Blog/Blog";
 import Courses from "../component/Courses/Courses";
+import Details from "../component/Courses/Details";
 import Faq from "../component/Faq/Faq";
 import Home from "../component/Home/Home";
 import Main from "../Layout/Main";
@@ -23,9 +24,17 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-          path: "/courses",
-          loader: async()=> fetch('https://it-the-future.vercel.app/products'),
+        path: "/courses",
+        loader: async () => fetch("https://it-the-future.vercel.app/products"),
         element: <Courses></Courses>,
+      },
+      {
+        path: "/details/:id",
+        loader: async ({ params }) =>
+          fetch(
+            `https://it-the-future.vercel.app/product/${params.id}`
+          ),
+        element: <Details></Details>,
       },
       {
         path: "/blog",
