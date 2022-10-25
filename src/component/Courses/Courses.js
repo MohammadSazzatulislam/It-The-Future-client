@@ -1,10 +1,24 @@
 import React from 'react';
+import LeftSideNav from './LeftSideNav';
+import Course from './Course';
+import { useLoaderData } from 'react-router-dom';
 
 const Courses = () => {
+    const products = useLoaderData()
+
     return (
-        <div>
-            <h1>this is courses page</h1>
+      <div className="bg-gray-100 flex gap -5 ">
+        <div className="w-52 py-8 lg:inline-block hidden border-2 border-blue-500">
+                <LeftSideNav></LeftSideNav>
         </div>
+        <div className="mx-auto container py-8 border-2 border-blue-500">
+          <div className="flex flex-wrap items-center lg:justify-between justify-center">
+            {products.map((product) => (
+              <Course key={product.id} product={product}></Course>
+            ))}
+          </div>
+        </div>
+      </div>
     );
 };
 
