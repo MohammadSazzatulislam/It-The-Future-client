@@ -25,15 +25,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/courses",
-        loader: async () => fetch("https://it-the-future.vercel.app/products"),
         element: <Courses></Courses>,
       },
       {
         path: "/details/:id",
         loader: async ({ params }) =>
-          fetch(
-            `https://it-the-future.vercel.app/product/${params.id}`
-          ),
+          fetch(`https://it-the-future.vercel.app/product/${params.id}`),
         element: <Details></Details>,
       },
       {

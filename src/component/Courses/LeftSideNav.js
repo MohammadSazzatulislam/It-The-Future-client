@@ -1,16 +1,11 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useContext } from "react";
 import { Link } from 'react-router-dom';
+import { AllProductsContext } from "../../Context/ProductsContext";
 
 const LeftSideNav = () => {
-  const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    fetch("https://it-the-future.vercel.app/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
+  const products = useContext(AllProductsContext) 
 
   return (
     <div className="flex flex-col items-start gap-3">

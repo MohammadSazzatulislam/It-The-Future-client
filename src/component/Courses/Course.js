@@ -9,7 +9,7 @@ const Course = ({ product }) => {
       <div className="mx-auto container py-">
         <div className="flex flex-wrap items-center lg:justify-between justify-center">
           {/* Card  */}
-          <div className="mx-2 w-72 lg:mb-0 mb-8">
+          <div className="mx-2 w-72 lg:mb-8 mb-4">
             <div>
               <img alt="" src={img} className="w-full h-44" />
             </div>
