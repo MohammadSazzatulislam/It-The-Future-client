@@ -44,8 +44,10 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          daisyUI
+        <Link to="/">
+          <p className="flex flex-col gap-1 lg:flex-row text-left font-bold p-1 text-xl   ">
+            IT <span>The Future</span>
+          </p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -85,7 +87,7 @@ const Header = () => {
             Sign Up
           </button>
         </Link>
-        <Link to ='/login'>
+        <Link to="/login">
           <button className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm ">
             Log In
           </button>
