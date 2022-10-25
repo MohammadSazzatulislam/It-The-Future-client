@@ -4,7 +4,8 @@ import Course from './Course';
 import { useLoaderData } from 'react-router-dom';
 
 const Courses = () => {
-    const products = useLoaderData()
+  const products = useLoaderData()
+  console.log(products);
 
     return (
       <div className="bg-gray-100 flex gap -5 ">

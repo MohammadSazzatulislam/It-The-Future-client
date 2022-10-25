@@ -1,13 +1,14 @@
-import React from 'react';  
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Course = ({ product }) => {
-  const { name, img } = product;
+  const { id, name, img, price } = product;
 
   return (
     <div>
       <div className="mx-auto container py-">
         <div className="flex flex-wrap items-center lg:justify-between justify-center">
-          {/* Card 1 */}
+          {/* Card  */}
           <div className="mx-2 w-72 lg:mb-0 mb-8">
             <div>
               <img alt="" src={img} className="w-full h-44" />
@@ -31,43 +32,30 @@ const Course = ({ product }) => {
                     <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2" />
                   </svg>
                 </div>
-                <div className="bg-yellow-200 py-1.5 px-6 rounded-full">
-                  <p className="text-xs text-yellow-500">Featured</p>
+                <div className="bg-yellow-400 py-1.5 px-6 rounded-full">
+                  <Link
+                    to={`/details/${id}`}
+                    className="text-md font-semibold text-indigo-700"
+                  >
+                    Featured
+                  </Link>
                 </div>
               </div>
               <div className="p-4">
-                <div className="flex items-center">
-                  <h2 className="text-lg font-semibold">{name}</h2>
-                  <p className="text-xs text-gray-600 pl-5">4 days ago</p>
-                </div>
-                <p className="text-xs text-gray-600 mt-2">
-                  The Apple iPhone XS is available in 3 colors with 64GB memory.
-                  Shoot amazing videos
-                </p>
-                <div className="flex mt-4">
-                  <div>
-                    <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">
-                      12 months warranty
-                    </p>
-                  </div>
-                  <div className="pl-2">
-                    <p className="text-xs text-gray-600 px-2 bg-gray-200 py-1">
-                      Complete box
-                    </p>
-                  </div>
-                </div>
+                <h2 className="text-lg font-semibold">{name}</h2>
+
                 <div className="flex items-center justify-between py-4">
-                  <h2 className="text-indigo-700 text-xs font-semibold">
-                    Bay Area, San Francisco
+                  <h2 className="text-indigo-700 text-lg font-semibold">
+                    Price :
                   </h2>
                   <h3 className="text-indigo-700 text-xl font-semibold">
-                    $350
+                    {price}
                   </h3>
                 </div>
               </div>
             </div>
           </div>
-          {/* Card 1 Ends */}
+          {/* Card Ends */}
         </div>
       </div>
     </div>
