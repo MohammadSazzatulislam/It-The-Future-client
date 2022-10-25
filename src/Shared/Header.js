@@ -23,26 +23,22 @@ const Header = () => {
               />
             </svg>
           </label>
-          <ul
+          <nav
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact font-semibold dropdown-content mt-5 gap-3 p-4 shadow bg-base-100 rounded-sm w-screen"
           >
-            <li>
-              <Link to="/home">home</Link>
-            </li>
-            <li>
-              <Link to="/courses">Courses</Link>
-            </li>
-            <li>
-              <Link to="/blog">Blog</Link>
-            </li>
-            <li>
-              <Link to="/faq">Faq</Link>
-            </li>
-            <li className="lg:hidden">
+            <Link to="/home">home</Link>
+
+            <Link to="/courses">Courses</Link>
+
+            <Link to="/blog">Blog</Link>
+
+            <Link to="/faq">Faq</Link>
+
+            <p className="lg:hidden ">
               <LeftSideNav></LeftSideNav>
-            </li>
-          </ul>
+            </p>
+          </nav>
         </div>
         <Link to="/">
           <p className="flex flex-col gap-1 lg:flex-row text-left font-bold p-1 text-xl   ">
