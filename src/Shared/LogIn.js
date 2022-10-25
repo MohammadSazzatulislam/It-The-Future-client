@@ -10,7 +10,7 @@ const LogIn = () => {
   });
 
   const handleSubmit = (e) => {
-    e.preventDefaule();
+    e.preventDefault();
     const form = e.target.value;
   };
 

@@ -1,8 +1,17 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import LeftSideNav from "../component/Courses/LeftSideNav";
+import { UserAuthContext } from "../Context/AuthContext";
 
 const Header = () => {
+
+  const { user, logOutUser } = useContext(UserAuthContext);
+
+  const handleLogOut = () => {
+    logOutUser()
+  }
+
   return (
     <div className="navbar bg-teal-500">
       <div className="navbar-start">
@@ -63,31 +72,26 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end flex items-center gap-3">
-        {/* {user?.uid ? (
-            <button className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm ">
+        {user?.uid ? (
+          <Link to='/'>
+            <button onClick={handleLogOut} className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm ">
               Log Out
             </button>
-          ) : (
-            <>
+          </Link>
+        ) : (
+          <>
+            <Link to="/signup">
               <button className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm ">
                 Sign Up
               </button>
+            </Link>
+            <Link to="/login">
               <button className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm ">
                 Log In
               </button>
-            </>
-          )} */}
-
-        <Link to="/signup">
-          <button className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm ">
-            Sign Up
-          </button>
-        </Link>
-        <Link to="/login">
-          <button className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm ">
-            Log In
-          </button>
-        </Link>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
