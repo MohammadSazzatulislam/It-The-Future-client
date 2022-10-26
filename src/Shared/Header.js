@@ -5,12 +5,11 @@ import LeftSideNav from "../component/Courses/LeftSideNav";
 import { UserAuthContext } from "../Context/AuthContext";
 
 const Header = () => {
-
   const { user, logOutUser } = useContext(UserAuthContext);
 
   const handleLogOut = () => {
-    logOutUser()
-  }
+    logOutUser();
+  };
 
   return (
     <div className="navbar bg-teal-500">
@@ -50,8 +49,8 @@ const Header = () => {
           </nav>
         </div>
         <Link to="/">
-          <p className="flex flex-col gap-1 lg:flex-row text-left font-bold p-1 text-xl   ">
-            IT <span>The Future</span>
+          <p className=" font-bold p-1 text-xl ">
+            IT The Future
           </p>
         </Link>
       </div>
@@ -73,11 +72,40 @@ const Header = () => {
       </div>
       <div className="navbar-end flex items-center gap-3">
         {user?.uid ? (
-          <Link to='/'>
-            <button onClick={handleLogOut} className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm ">
-              Log Out
-            </button>
-          </Link>
+          <div className="flex justify-between items-center">
+            <label tabIndex={0} className="btn btn-ghost btn-circle mr-3 avatar">
+              <div title={user?.displayName} className="w-10 rounded-full">
+                {user?.photoURL ? (
+                  <img alt="profile picture" src={user?.photoURL}/>
+                ) : (
+                  <div className="flex justify-center items-center mt-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                      />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            </label>
+            <Link to="/">
+              <button
+                onClick={handleLogOut}
+                className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm "
+              >
+                Log Out
+              </button>
+            </Link>
+          </div>
         ) : (
           <>
             <Link to="/signup">
