@@ -51,7 +51,11 @@ const AuthContext = ({ children }) => {
 
   // google sign in
   const googleSignIn = (googleProvider) => {
-    return signInWithPopup(auth, googleProvider);
+    return signInWithPopup(auth, googleProvider)
+  }
+
+  const githubSignIn = (githubProvider) => {
+    return signInWithPopup(auth, githubProvider)
   }
 
   useEffect(() => {
@@ -70,6 +74,7 @@ const AuthContext = ({ children }) => {
     verifyUserEmail,
     resetUserPassword,
     googleSignIn,
+    githubSignIn,
   };
 
   return (
