@@ -1,11 +1,12 @@
 import React from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import LeftSideNav from "../component/Courses/LeftSideNav";
 import { UserAuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { useEffect } from "react";
+import img from  '../logo.png';
 
 const Header = () => {
 
@@ -33,7 +34,7 @@ const Header = () => {
 
 
   return (
-    <div className="navbar bg-teal-500">
+    <div className="navbar gradient text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -54,28 +55,66 @@ const Header = () => {
           </label>
           <nav
             tabIndex={0}
-            className="menu menu-compact font-semibold dropdown-content mt-5 gap-3 p-4 shadow bg-base-100 rounded-sm w-screen"
+            className="menu menu-compact gradient font-semibold dropdown-content mt-5 gap-3 p-4 shadow bg-base-100 rounded-sm w-screen"
           >
-            <Link to="/home">home</Link>
+            <NavLink
+              to="/home"
+              className={({ isActive }) =>
+                isActive ? "bg-orange-600 " : undefined
+              }
+            >
+              home
+            </NavLink>
 
-            <Link to="/courses">Courses</Link>
+            <NavLink
+              to="/courses"
+              className={({ isActive }) =>
+                isActive ? "bg-orange-600 " : undefined
+              }
+            >
+              Courses
+            </NavLink>
 
-            <Link to="/blog">Blog</Link>
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                isActive ? "bg-orange-600 " : undefined
+              }
+            >
+              Blog
+            </NavLink>
 
-            <Link to="/faq">FAQ</Link>
+            <NavLink
+              to="/faq"
+              className={({ isActive }) =>
+                isActive ? "bg-orange-600 " : undefined
+              }
+            >
+              FAQ
+            </NavLink>
 
             <p className="lg:hidden ">
               <LeftSideNav></LeftSideNav>
             </p>
           </nav>
         </div>
-        <div className="flex justify-between gap-3 items-center">
-          <Link to="/">
+        <div className="flex  flex-grow justify-between gap-3 items-center">
+          <NavLink
+            to="/"
+            className="flex lg:w-fit justify-around items-center gap-2"
+          >
+            <div className="hidden lg:inline text-white md:inline">
+              <img
+                className="w-14 rounded-tl-3xl rounded-br-3xl bg-white border-green-400 border-2 "
+                src={img}
+                alt=""
+              />
+            </div>
             <p className=" font-bold p-1 text-xl ">IT The Future</p>
-          </Link>
+          </NavLink>
 
           <div className="flex justify-between items-center gap-2">
-            <input onClick={handleToggle} type="checkbox" className="toggle" />
+            <input onClick={handleToggle} type="checkbox" className="toggle " />
             {toggle === true ? (
               <p>
                 <svg
@@ -84,7 +123,7 @@ const Header = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-5 h-5 text-zinc-900  mr-3"
                 >
                   <path
                     strokeLinecap="round"
@@ -101,7 +140,7 @@ const Header = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-5 h-5  mr-3"
                 >
                   <path
                     strokeLinecap="round"
@@ -117,16 +156,44 @@ const Header = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0 font-semibold">
           <li>
-            <Link to="/home">home</Link>
+            <NavLink
+              to="/home"
+              className={({ isActive }) =>
+                isActive ? "bg-orange-600 glass" : undefined
+              }
+            >
+              home
+            </NavLink>
           </li>
           <li>
-            <Link to="/courses">Courses</Link>
+            <NavLink
+              to="/courses"
+              className={({ isActive }) =>
+                isActive ? "bg-orange-600 glass" : undefined
+              }
+            >
+              Courses
+            </NavLink>
           </li>
           <li>
-            <Link to="/blog">Blog</Link>
+            <NavLink
+              to="/blog"
+              className={({ isActive }) =>
+                isActive ? "bg-orange-600 glass" : undefined
+              }
+            >
+              Blog
+            </NavLink>
           </li>
           <li>
-            <Link to="/faq">FAQ</Link>
+            <NavLink
+              to="/faq"
+              className={({ isActive }) =>
+                isActive ? "bg-orange-600 glass" : undefined
+              }
+            >
+              FAQ
+            </NavLink>
           </li>
         </ul>
       </div>
@@ -138,7 +205,7 @@ const Header = () => {
               data-tip={user?.displayName}
               className="btn btn-ghost btn-circle mr-3 flex justify-center items-center tooltip tooltip-left avatar "
             >
-              <div data-tip="hello" className="w-10 rounded-full ">
+              <div className="w-10 rounded-full ">
                 {user?.photoURL ? (
                   <img alt="profile picture" src={user?.photoURL} />
                 ) : (
@@ -161,27 +228,27 @@ const Header = () => {
                 )}
               </div>
             </label>
-            <Link to="/">
+            <NavLink to="/">
               <button
                 onClick={handleLogOut}
                 className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm "
               >
                 Log Out
               </button>
-            </Link>
+            </NavLink>
           </div>
         ) : (
           <>
-            <Link to="/signup">
+            <NavLink to="/signup">
               <button className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm ">
                 Sign Up
               </button>
-            </Link>
-            <Link to="/login">
+            </NavLink>
+            <NavLink to="/login">
               <button className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm ">
                 Log In
               </button>
-            </Link>
+            </NavLink>
           </>
         )}
       </div>

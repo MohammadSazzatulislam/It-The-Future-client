@@ -6,10 +6,10 @@ const Course = ({ product }) => {
 
   return (
     <div>
-      <div className="mx-auto container py-">
+      <div className="mx-auto container ">
         <div className="flex flex-wrap items-center lg:justify-between justify-center">
           {/* Card  */}
-          <div className="mx-2 w-72 lg:mb-8 mb-4">
+          <div className="mx-2 w-72 lg:mb-8 mb-4 ">
             <div>
               <img alt="" src={img} className="w-full h-44" />
             </div>
@@ -32,14 +32,14 @@ const Course = ({ product }) => {
                     <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2" />
                   </svg>
                 </div>
-                <div className="bg-yellow-400 py-1.5 px-6 rounded-full">
-                  <Link
-                    to={`/details/${id}`}
-                    className="text-md font-semibold text-indigo-700"
-                  >
+                <Link
+                  to={`/details/${id}`}
+                  className="bg-yellow-400 hover:bg-yellow-500 py-1.5 px-6 rounded-full"
+                >
+                  <div className="text-md font-semibold">
                     Featured
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </div>
               <div className="p-4">
                 <h2 className="text-lg font-semibold">{name}</h2>
