@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ProductsContext from './Context/ProductsContext';
 import AuthContext from './Context/AuthContext';
+import { Toaster } from 'react-hot-toast';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -12,6 +13,7 @@ root.render(
     <ProductsContext>
       <AuthContext>
         <App />
+        <Toaster />
       </AuthContext>
     </ProductsContext>
   </React.StrictMode>

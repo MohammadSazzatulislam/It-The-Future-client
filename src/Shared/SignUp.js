@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserAuthContext } from "../Context/AuthContext";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const [userInfo, setUserInfo] = useState({
@@ -12,17 +13,19 @@ const SignUp = () => {
     password: "",
   });
 
-  const { user, signUpNewUser } = useContext(UserAuthContext);
+  const { user, signUpNewUser, userProfileUpdate, verifyUserEmail } =
+    useContext(UserAuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
 
-    const name = userInfo.name;
+    const displayName = userInfo.name;
     const photoURL = userInfo.photoURL;
     const email = userInfo.email;
     const password = userInfo.password;
 
+    // sign up user
     signUpNewUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -30,13 +33,32 @@ const SignUp = () => {
           name: "",
           photoURL: "",
           email: "",
-          password: ""
+          password: "",
         });
         console.log(user);
+        //update profile name and photoURL
+        userProfileUpdate(displayName, photoURL)
+          .then(() => {
+            // Profile updated!
+            // ...
+          })
+          .catch((error) => {
+            console.error(error);
+            // An error occurred
+            // ...
+          });
+        //verifyUserEmail
+        verifyUserEmail().then(() => {
+          toast.success("Please verify your email address!");
+        });
+
       })
       .catch((error) => {
         console.error(error);
       });
+    
+   
+    
   };
 
   const handleNameChange = (e) => {
