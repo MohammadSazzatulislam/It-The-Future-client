@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserAuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
@@ -22,6 +22,10 @@ const SignUp = () => {
     password: "",
     wrongEmail: "",
   });
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+    console.log(location);
 
   const {
     user,
@@ -30,6 +34,7 @@ const SignUp = () => {
     verifyUserEmail,
     googleSignIn,
     githubSignIn,
+    setLoading,
   } = useContext(UserAuthContext);
 
   const handleSubmit = (e) => {
@@ -49,8 +54,9 @@ const SignUp = () => {
           photoURL: "",
           email: "",
           password: "",
-        });
-        console.log(user);
+        })
+          navigate(from, { replace: true });
+          setLoading(false)    
         //update profile name and photoURL
         userProfileUpdate(displayName, photoURL)
           .then(() => {
@@ -69,7 +75,10 @@ const SignUp = () => {
       })
       .catch((error) => {
         setErrors({ ...errors, wrongEmail: error.message });
-      });
+      })
+      .finally(() => {
+        setLoading(false);
+      });  
   };
   const handleNameChange = (e) => {
     const name = e.target.value;
@@ -126,6 +135,8 @@ const SignUp = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
+         navigate(from, { replace: true });
+         setLoading(false)
         // ...
       })
       .catch((error) => {
@@ -148,6 +159,8 @@ const SignUp = () => {
 
         // The signed-in user info.
         const user = result.user;
+        navigate(from, { replace: true });
+        setLoading(false)
         // ...
       })
       .catch((error) => {

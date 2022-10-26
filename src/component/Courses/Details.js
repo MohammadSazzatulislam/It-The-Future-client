@@ -1,8 +1,11 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 const Details = () => {
   const detail = useLoaderData();
+
 
   const { name, img, details, about, time, price } = detail;
 
@@ -39,9 +42,11 @@ const Details = () => {
             <span>Price : </span> {price}
           </p>
 
-          <button className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">
-            Chack Out
-          </button>
+          <Link to="/checkout">
+            <button className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">
+              Get premium access
+            </button>
+          </Link>
         </div>
 
         {/* <!-- Preview Images Div For larger Screen--> */}

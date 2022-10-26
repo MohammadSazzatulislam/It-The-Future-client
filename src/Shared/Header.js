@@ -73,9 +73,10 @@ const Header = () => {
           <div className="flex justify-between items-center">
             <label
               tabIndex={0}
-              className="btn btn-ghost btn-circle mr-3 avatar"
+              data-tip={user?.displayName}
+              className="btn btn-ghost btn-circle mr-3 flex justify-center items-center tooltip tooltip-left avatar "
             >
-              <div title={user?.displayName} className="w-10 rounded-full">
+              <div data-tip="hello" className="w-10 rounded-full ">
                 {user?.photoURL ? (
                   <img alt="profile picture" src={user?.photoURL} />
                 ) : (

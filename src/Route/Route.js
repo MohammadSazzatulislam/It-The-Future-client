@@ -8,6 +8,9 @@ import Main from "../Layout/Main";
 import ErrorPage from "../Shared/ErrorPage";
 import LogIn from "../Shared/LogIn";
 import SignUp from "../Shared/SignUp";
+import CheckOut from '../component/Courses/CheckOut';
+import PrivateRoute from './PrivateRoute';
+import Course from "../component/Courses/Course";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +52,10 @@ export const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp></SignUp>,
       },
+      {
+        path: "/checkout",
+        element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
+      }
     ],
   },
 ]);

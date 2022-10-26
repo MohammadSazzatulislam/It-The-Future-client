@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserAuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
@@ -19,12 +19,22 @@ const LogIn = () => {
     wrongPassword: "",
   });
 
-  const { user, logInUser, resetUserPassword, googleSignIn, githubSignIn } =
-    useContext(UserAuthContext);
+ const navigate = useNavigate();
+ const location = useLocation();
+ const from = location.state?.from?.pathname || "/";
+ console.log(location);
+
+  const {
+    user,
+    logInUser,
+    resetUserPassword,
+    googleSignIn,
+    githubSignIn,
+    setLoading,
+  } = useContext(UserAuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const email = userInfo.email;
     const password = userInfo.password;
 
@@ -32,7 +42,9 @@ const LogIn = () => {
       .then((result) => {
         const user = result.user;
         setUserInfo({ email: "", password: "" });
-        console.log(user);
+        navigate(from, { replace: true });
+        setLoading(false)
+        
       })
       .catch((error) => {
         setErrors({ ...errors, wrongPassword: error.message });
@@ -78,6 +90,8 @@ const LogIn = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
+         navigate(from, { replace: true });
+         setLoading(false)
         // ...
       })
       .catch((error) => {
@@ -100,6 +114,8 @@ const LogIn = () => {
 
         // The signed-in user info.
         const user = result.user;
+        navigate(from, { replace: true });
+        setLoading(false)
         // ...
       })
       .catch((error) => {
