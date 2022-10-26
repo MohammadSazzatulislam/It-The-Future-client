@@ -41,7 +41,7 @@ const Header = () => {
 
             <Link to="/blog">Blog</Link>
 
-            <Link to="/faq">Faq</Link>
+            <Link to="/faq">FAQ</Link>
 
             <p className="lg:hidden ">
               <LeftSideNav></LeftSideNav>
@@ -49,13 +49,11 @@ const Header = () => {
           </nav>
         </div>
         <Link to="/">
-          <p className=" font-bold p-1 text-xl ">
-            IT The Future
-          </p>
+          <p className=" font-bold p-1 text-xl ">IT The Future</p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">
+        <ul className="menu menu-horizontal p-0 font-semibold">
           <li>
             <Link to="/home">home</Link>
           </li>
@@ -66,17 +64,20 @@ const Header = () => {
             <Link to="/blog">Blog</Link>
           </li>
           <li>
-            <Link to="/faq">Faq</Link>
+            <Link to="/faq">FAQ</Link>
           </li>
         </ul>
       </div>
       <div className="navbar-end flex items-center gap-3">
         {user?.uid ? (
           <div className="flex justify-between items-center">
-            <label tabIndex={0} className="btn btn-ghost btn-circle mr-3 avatar">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost btn-circle mr-3 avatar"
+            >
               <div title={user?.displayName} className="w-10 rounded-full">
                 {user?.photoURL ? (
-                  <img alt="profile picture" src={user?.photoURL}/>
+                  <img alt="profile picture" src={user?.photoURL} />
                 ) : (
                   <div className="flex justify-center items-center mt-2">
                     <svg
