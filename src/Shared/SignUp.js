@@ -16,7 +16,7 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const form = e.target.value;
+
 
     const name = userInfo.name;
     const photoURL = userInfo.photoURL;

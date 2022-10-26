@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from "react-router-dom";
+import { UserAuthContext } from '../Context/AuthContext';
 
 const LogIn = () => {
 
@@ -9,9 +10,26 @@ const LogIn = () => {
     password: "",
   });
 
+  const { user, logInUser } = useContext(UserAuthContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const form = e.target.value;
+
+    const email = userInfo.email;
+    const password = userInfo.password;
+
+    logInUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        setUserInfo({ email: "", password: "" });
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+
+    
   };
 
   const handleEmailChange = (e) => {
