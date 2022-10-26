@@ -11,7 +11,7 @@ const Details = () => {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "product-details",
-    onAfterPrint: () => alert("print success"),
+    
   });
 
   const { id,  name, img, details, about, time, price } = detail;
@@ -19,7 +19,6 @@ const Details = () => {
   return (
     <div
       ref={componentRef}
-     className='w-full h-screen'
     >
       <div className="flex justify-end mt-5 pr-40 ">
         <svg
@@ -39,8 +38,8 @@ const Details = () => {
         </svg>
       </div>
 
-      <div className="2xl:container 2xl:mx-auto lg:py-10 lg:px-20 md:py-7 md:px-3 py-2 px-2 ">
-        <div className="flex justify-center items-center lg:flex-row flex-col gap-8">
+      <div className="2xl:container 2xl:mx-auto lg:py-10 lg:px-20 md:py-5 md:px-3 py-2 px-2 ">
+        <div className="flex justify-center items-center lg:flex-row flex-col gap-6">
           {/* <!-- Description Div --> */}
 
           <div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
@@ -80,24 +79,24 @@ const Details = () => {
 
           {/* <!-- Preview Images Div For larger Screen--> */}
 
-          <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">
+          <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-3 gap-2">
             <div className=" w-ful lg:w-8/12 bg-gray-100 flex justify-center items-center">
               <img className="h-full" src={img} alt="Wooden Chair Previw" />
             </div>
-            <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
-              <div className="bg-gray-100 flex justify-center items-center py-4">
+            <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-3">
+              <div className="bg-gray-100 flex justify-center items-center py-2">
                 <img
                   src="https://i.ibb.co/0jX1zmR/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1-1.png"
                   alt="Wooden chair - preview 1"
                 />
               </div>
-              <div className="bg-gray-100 flex justify-center items-center py-4">
+              <div className="bg-gray-100 flex justify-center items-center py-2">
                 <img
                   src="https://i.ibb.co/7zv1N5Q/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-2.png"
                   alt="Wooden chair - preview 2"
                 />
               </div>
-              <div className="bg-gray-100 flex justify-center items-center py-4">
+              <div className="bg-gray-100 flex justify-center items-center py-2">
                 <img
                   src="https://i.ibb.co/0jX1zmR/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1-1.png"
                   alt="Wooden chair- preview 3"
