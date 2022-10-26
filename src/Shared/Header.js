@@ -3,13 +3,21 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import LeftSideNav from "../component/Courses/LeftSideNav";
 import { UserAuthContext } from "../Context/AuthContext";
+import toast from "react-hot-toast";
+import { useState } from "react";
 
 const Header = () => {
+
+  const [toggle, setToggle] = useState(false)
+
   const { user, logOutUser } = useContext(UserAuthContext);
 
   const handleLogOut = () => {
     logOutUser();
+     toast.success("successfully log out");
   };
+
+ 
 
   return (
     <div className="navbar bg-teal-500">
@@ -48,9 +56,17 @@ const Header = () => {
             </p>
           </nav>
         </div>
-        <Link to="/">
-          <p className=" font-bold p-1 text-xl ">IT The Future</p>
-        </Link>
+        <div className="flex justify-between gap-3 items-center">
+          <Link to="/">
+            <p className=" font-bold p-1 text-xl ">IT The Future</p>
+          </Link>
+          <input
+            type="checkbox"
+            className="toggle"
+        
+            checked
+          />
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0 font-semibold">

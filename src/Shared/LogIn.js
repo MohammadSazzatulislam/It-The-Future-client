@@ -231,7 +231,7 @@ const LogIn = () => {
                   aria-label="Forgot password"
                   className="text-sm font-medium leading-none underline text-blue-800 cursor-pointer"
                 >
-                  Forgot Password
+                  Forget Password
                 </span>
               </div>
             </p>
