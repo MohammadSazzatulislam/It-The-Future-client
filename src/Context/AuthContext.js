@@ -4,6 +4,7 @@ import {
   getAuth,
   onAuthStateChanged,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -32,6 +33,11 @@ const AuthContext = ({ children }) => {
    return sendEmailVerification(auth.currentUser)
   }
 
+  // reset password 
+  const resetUserPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  }
+
   // user log in
   const logInUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password)
@@ -56,6 +62,7 @@ const AuthContext = ({ children }) => {
     logOutUser,
     userProfileUpdate,
     verifyUserEmail,
+    resetUserPassword,
   };
 
   return (

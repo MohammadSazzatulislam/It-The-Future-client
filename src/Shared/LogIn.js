@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from "react-router-dom";
 import { UserAuthContext } from '../Context/AuthContext';
+import toast from "react-hot-toast";
 
 const LogIn = () => {
 
@@ -10,7 +11,7 @@ const LogIn = () => {
     password: "",
   });
 
-  const { user, logInUser } = useContext(UserAuthContext);
+  const { user, logInUser, resetUserPassword } = useContext(UserAuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,6 +42,22 @@ const LogIn = () => {
     setUserInfo({ ...userInfo, password: password });
   };
 
+
+  const handleForgotPassword = () => {
+    const email = userInfo.email;
+    resetUserPassword(email)
+      .then(() => {
+        toast.success("Please check your email address");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+    
+  }
+
+
     return (
       <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
         <div className="flex flex-col items-center justify-center">
@@ -64,7 +81,7 @@ const LogIn = () => {
             <p className="text-2xl font-extrabold leading-6 text-gray-800">
               Log In to your account
             </p>
-            <form onClick={handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <div className="mt-10">
                 <label className="text-sm font-medium leading-none text-gray-800">
                   Email
@@ -114,16 +131,27 @@ const LogIn = () => {
               </div>
               <p className="text-sm mt-4 font-medium leading-none text-gray-500">
                 Don't have account?
-                <Link to="/signup">
+                <div className='flex justify-between items-center'>
+                  <Link to="/signup">
+                    <span
+                      tabIndex={0}
+                      role="link"
+                      aria-label="Sign up here"
+                      className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer"
+                    >
+                      Sign Up here
+                    </span>
+                  </Link>
                   <span
+                    onClick={handleForgotPassword}
                     tabIndex={0}
                     role="link"
-                    aria-label="Sign up here"
-                    className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer"
+                    aria-label="Forgot password"
+                    className="text-sm font-medium leading-none underline text-blue-800 cursor-pointer"
                   >
-                    Sign Up here
+                    Forgot Password
                   </span>
-                </Link>
+                </div>
               </p>
             </form>
             <div className="w-full flex items-center justify-between py-5">

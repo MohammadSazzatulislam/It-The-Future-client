@@ -13,12 +13,16 @@ const SignUp = () => {
     password: "",
   });
 
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+
   const { user, signUpNewUser, userProfileUpdate, verifyUserEmail } =
     useContext(UserAuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
 
     const displayName = userInfo.name;
     const photoURL = userInfo.photoURL;
@@ -49,16 +53,12 @@ const SignUp = () => {
           });
         //verifyUserEmail
         verifyUserEmail().then(() => {
-          toast.success("Please verify your email address!");
+          toast.success("Verification email sent your email address");
         });
-
       })
       .catch((error) => {
         console.error(error);
       });
-    
-   
-    
   };
 
   const handleNameChange = (e) => {
@@ -71,10 +71,40 @@ const SignUp = () => {
   };
   const handleEmailChange = (e) => {
     const email = e.target.value;
+
+    if (
+      !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+      )
+    ) {
+      setErrors({ ...errors, email: "please entered an valid email address!" });
+    } else {
+      setErrors({
+        email: "",
+      });
+    }
     setUserInfo({ ...userInfo, email: email });
   };
   const handlePasswordChange = (e) => {
     const password = e.target.value;
+
+    if (!/(?=.*[A-Z])/.test(password)) {
+      setErrors({ ...errors, password: "At least one uppercase character" });
+    }else  if (!/(?=.*[a-z])/.test(password)) {
+      setErrors({ ...errors, password: "At least one lowercase character" });
+    }else  if (!/(?=.*\d)/.test(password)) {
+      setErrors({ ...errors, password: "At least one digit" });
+    }else  if (!/^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/.test(password)) {
+      setErrors({ ...errors, password: "At least one special characte" });
+    } else if (!/(.{6,})/.test(password)) {
+      setErrors({ ...errors, password: "Minimum 6 characters" });
+    } else {
+      setErrors({
+        password: "",
+      });
+    }
+    
+    
     setUserInfo({ ...userInfo, password: password });
   };
 
@@ -101,7 +131,7 @@ const SignUp = () => {
           <p className="text-2xl font-extrabold leading-6 text-gray-800">
             Sign Up to your account
           </p>
-          <form onClick={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className=" mt-10">
               <label className="text-sm font-medium leading-none text-gray-800">
                 Full Name
@@ -121,8 +151,8 @@ const SignUp = () => {
               </label>
               <input
                 value={userInfo.photoURL}
-                required
                 onChange={handlePhotoURLChange}
+                required
                 placeholder="enter your photoURL"
                 type="text"
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
@@ -140,6 +170,11 @@ const SignUp = () => {
                 type="email"
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
               />
+              {errors.email && (
+                <label className="text-sm font-medium leading-none text-red-600">
+                  {errors.email}
+                </label>
+              )}
             </div>
             <div className="mt-6  w-full">
               <label className="text-sm font-medium leading-none text-gray-800">
@@ -154,7 +189,8 @@ const SignUp = () => {
                   type="password"
                   className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
-                <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
+
+                <div  className="absolute right-0 mt-2 mr-3 cursor-pointer">
                   <svg
                     width={16}
                     height={16}
@@ -169,6 +205,11 @@ const SignUp = () => {
                   </svg>
                 </div>
               </div>
+              {errors.password && (
+                <label className="text-sm font-medium leading-none text-red-600">
+                  {errors.password}
+                </label>
+              )}
             </div>
             <div className="mt-8">
               <button className="btn btn-primary  text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700  rounded-sm hover:bg-indigo-600 py-4 w-full">
