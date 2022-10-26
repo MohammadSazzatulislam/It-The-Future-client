@@ -7,7 +7,7 @@ const Details = () => {
   const detail = useLoaderData();
 
 
-  const { name, img, details, about, time, price } = detail;
+  const { id,  name, img, details, about, time, price } = detail;
 
   return (
     <div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4 ">
@@ -42,7 +42,7 @@ const Details = () => {
             <span>Price : </span> {price}
           </p>
 
-          <Link to="/checkout">
+          <Link to={`/checkout/${id}`}>
             <button className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">
               Get premium access
             </button>

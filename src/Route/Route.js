@@ -53,9 +53,15 @@ export const router = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
       {
-        path: "/checkout",
-        element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
-      }
+        path: "/checkout/:id",
+        loader: async ({ params }) =>
+          fetch(`https://it-the-future.vercel.app/product/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <CheckOut></CheckOut>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
