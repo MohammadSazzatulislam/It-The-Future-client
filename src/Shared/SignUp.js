@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { UserAuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
+import { GoogleAuthProvider } from "firebase/auth";
+
+const googleProvider = new GoogleAuthProvider();
 
 const SignUp = () => {
   const [userInfo, setUserInfo] = useState({
@@ -16,10 +19,16 @@ const SignUp = () => {
   const [errors, setErrors] = useState({
     email: "",
     password: "",
+    wrongEmail: ""
   });
 
-  const { user, signUpNewUser, userProfileUpdate, verifyUserEmail } =
-    useContext(UserAuthContext);
+  const {
+    user,
+    signUpNewUser,
+    userProfileUpdate,
+    verifyUserEmail,
+    googleSignIn,
+  } = useContext(UserAuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,10 +66,9 @@ const SignUp = () => {
         });
       })
       .catch((error) => {
-        console.error(error);
+        setErrors({...errors, wrongEmail: error.message})
       });
   };
-
   const handleNameChange = (e) => {
     const name = e.target.value;
     setUserInfo({ ...userInfo, name: name });
@@ -107,6 +115,28 @@ const SignUp = () => {
     
     setUserInfo({ ...userInfo, password: password });
   };
+  const handleGoogleSubmit = () => {
+    googleSignIn(googleProvider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        // ...
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+
+  }
 
   return (
     <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
@@ -190,7 +220,7 @@ const SignUp = () => {
                   className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
 
-                <div  className="absolute right-0 mt-2 mr-3 cursor-pointer">
+                <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
                   <svg
                     width={16}
                     height={16}
@@ -208,6 +238,11 @@ const SignUp = () => {
               {errors.password && (
                 <label className="text-sm font-medium leading-none text-red-600">
                   {errors.password}
+                </label>
+              )}
+              {errors.wrongEmail && (
+                <label className="text-sm font-medium leading-none text-red-600">
+                  {errors.wrongEmail}
                 </label>
               )}
             </div>
@@ -238,7 +273,10 @@ const SignUp = () => {
             <hr className="w-full bg-gray-400  " />
           </div>
 
-          <button className="py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10">
+          <button
+            onClick={handleGoogleSubmit}
+            className="py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
+          >
             <svg
               width={19}
               height={20}

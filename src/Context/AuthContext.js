@@ -6,6 +6,7 @@ import {
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -48,6 +49,11 @@ const AuthContext = ({ children }) => {
     return signOut(auth);
   };
 
+  // google sign in
+  const googleSignIn = (googleProvider) => {
+    return signInWithPopup(auth, googleProvider);
+  }
+
   useEffect(() => {
     const unSubsCribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -63,6 +69,7 @@ const AuthContext = ({ children }) => {
     userProfileUpdate,
     verifyUserEmail,
     resetUserPassword,
+    googleSignIn,
   };
 
   return (

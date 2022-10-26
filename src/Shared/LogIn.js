@@ -2,6 +2,9 @@ import React, { useContext, useState } from 'react';
 import { Link } from "react-router-dom";
 import { UserAuthContext } from '../Context/AuthContext';
 import toast from "react-hot-toast";
+import { GoogleAuthProvider } from "firebase/auth";
+
+const googleProvider = new GoogleAuthProvider();
 
 const LogIn = () => {
 
@@ -11,7 +14,14 @@ const LogIn = () => {
     password: "",
   });
 
-  const { user, logInUser, resetUserPassword } = useContext(UserAuthContext);
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+    wrongPassword: ""
+  });
+
+  const { user, logInUser, resetUserPassword, googleSignIn } =
+    useContext(UserAuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,23 +36,31 @@ const LogIn = () => {
         console.log(user);
       })
       .catch((error) => {
-        console.error(error);
+        setErrors({ ...errors, wrongPassword: error.message });
       });
-
 
     
   };
-
   const handleEmailChange = (e) => {
     const email = e.target.value;
+    
+    if (
+      !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+      )
+    ) {
+      setErrors({ ...errors, email: "please entered an valid email address!" });
+    } else {
+      setErrors({
+        email: "",
+      });
+    }
     setUserInfo({ ...userInfo, email: email });
   };
   const handlePasswordChange = (e) => {
     const password = e.target.value;
     setUserInfo({ ...userInfo, password: password });
   };
-
-
   const handleForgotPassword = () => {
     const email = userInfo.email;
     resetUserPassword(email)
@@ -56,7 +74,27 @@ const LogIn = () => {
       });
     
   }
-
+ const handleGoogleSubmit = () => {
+   googleSignIn(googleProvider)
+     .then((result) => {
+       // This gives you a Google Access Token. You can use it to access the Google API.
+       const credential = GoogleAuthProvider.credentialFromResult(result);
+       const token = credential.accessToken;
+       // The signed-in user info.
+       const user = result.user;
+       // ...
+     })
+     .catch((error) => {
+       // Handle Errors here.
+       const errorCode = error.code;
+       const errorMessage = error.message;
+       // The email of the user's account used.
+       const email = error.customData.email;
+       // The AuthCredential type that was used.
+       const credential = GoogleAuthProvider.credentialFromError(error);
+       // ...
+     });
+ };
 
     return (
       <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
@@ -94,6 +132,11 @@ const LogIn = () => {
                   type="email"
                   className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
+                {errors?.email && (
+                  <label className="text-sm font-medium leading-none text-red-600">
+                    {errors?.email}
+                  </label>
+                )}
               </div>
               <div className="mt-6  w-full">
                 <label className="text-sm font-medium leading-none text-gray-800">
@@ -123,6 +166,11 @@ const LogIn = () => {
                     </svg>
                   </div>
                 </div>
+                {errors?.wrongPassword && (
+                  <label className="text-sm font-medium leading-none text-red-600">
+                    {errors?.wrongPassword}
+                  </label>
+                )}
               </div>
               <div className="mt-8">
                 <button className="btn btn-primary  text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700  rounded-sm hover:bg-indigo-600 py-4 w-full">
@@ -131,7 +179,7 @@ const LogIn = () => {
               </div>
               <p className="text-sm mt-4 font-medium leading-none text-gray-500">
                 Don't have account?
-                <div className='flex justify-between items-center'>
+                <div className="flex justify-between items-center">
                   <Link to="/signup">
                     <span
                       tabIndex={0}
@@ -162,7 +210,10 @@ const LogIn = () => {
               <hr className="w-full bg-gray-400  " />
             </div>
 
-            <button className="py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10">
+            <button
+              onClick={handleGoogleSubmit}
+              className="py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
+            >
               <svg
                 width={19}
                 height={20}
