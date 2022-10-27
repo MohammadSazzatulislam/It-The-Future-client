@@ -53,18 +53,18 @@ const Details = () => {
             <h2 className="font-bold lg:text-2xl text-xl lg:leading-9 leading-7 text-gray-800 mt-4">
               Course Outline
             </h2>
-            <p className=" font-semibold text-md lg:text-lg md:text-md leading-6  mt-4">
-              {details.map((detail) => (
-                <p>{detail}</p>
+            <div className=" font-semibold text-md lg:text-lg md:text-md leading-6  mt-4">
+              {details.map((detail , _index) => (
+                <p key={_index}>{detail}</p>
               ))}
-            </p>
-            <p className=" font-normal flex justify-between items-center text-base leading-6 mt-7">
-              {time.map((t) => (
-                <p className="bg-gray-200 text-md font-semibold px-2 py-1 rounded-sm ">
+            </div>
+            <div className=" font-normal flex justify-between items-center text-base leading-6 mt-7">
+              {time.map((t, _index) => (
+                <p key={_index} className="bg-gray-200 text-md font-semibold px-2 py-1 rounded-sm ">
                   {t}
                 </p>
               ))}
-            </p>
+            </div>
 
             <p className=" flex justify-between items-center font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
               <span>Price : </span> {price}

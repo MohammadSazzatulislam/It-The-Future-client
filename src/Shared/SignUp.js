@@ -24,18 +24,17 @@ const SignUp = () => {
     wrongEmail: "",
   });
 
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(false);
 
-  useEffect(()=> {
-  return
-  },[toggle])
+  useEffect(() => {
+    return;
+  }, [toggle]);
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const {
-    user,
     signUpNewUser,
     userProfileUpdate,
     verifyUserEmail,
@@ -61,9 +60,9 @@ const SignUp = () => {
           photoURL: "",
           email: "",
           password: "",
-        })
-          navigate(from, { replace: true });
-          setLoading(false)    
+        });
+        navigate(from, { replace: true });
+        setLoading(false);
         //update profile name and photoURL
         userProfileUpdate(displayName, photoURL)
           .then(() => {
@@ -85,7 +84,7 @@ const SignUp = () => {
       })
       .finally(() => {
         setLoading(false);
-      });  
+      });
   };
   const handleNameChange = (e) => {
     const name = e.target.value;
@@ -142,8 +141,8 @@ const SignUp = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-         navigate(from, { replace: true });
-         setLoading(false)
+        navigate(from, { replace: true });
+        setLoading(false);
         // ...
       })
       .catch((error) => {
@@ -167,7 +166,7 @@ const SignUp = () => {
         // The signed-in user info.
         const user = result.user;
         navigate(from, { replace: true });
-        setLoading(false)
+        setLoading(false);
         // ...
       })
       .catch((error) => {
@@ -183,12 +182,11 @@ const SignUp = () => {
   };
   const handleEyebutton = () => {
     if (toggle === true) {
-      setToggle(false)
+      setToggle(false);
+    } else {
+      setToggle(true);
     }
-    else {
-      setToggle(true)
-    }
-  }
+  };
 
   return (
     <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
@@ -265,7 +263,7 @@ const SignUp = () => {
                   onChange={handlePasswordChange}
                   required
                   placeholder="enter Password"
-                  type='password'
+                  type="password"
                   className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
 
@@ -317,7 +315,6 @@ const SignUp = () => {
             </p>
             <hr className="w-full bg-gray-400  " />
           </div>
-
           <button
             onClick={handleGoogleSubmit}
             className="py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-10"
