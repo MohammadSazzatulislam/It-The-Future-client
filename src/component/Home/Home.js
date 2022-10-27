@@ -7,13 +7,13 @@ const Home = () => {
         <div className="relative">
           <img
             alt=""
-            src="https://speakingdots.com/wp-content/uploads/2019/10/Artificial-intelligence.jpg"
+            src="https://vdc.edu.au/wp-content/uploads/2021/08/210804-Ed-14-Image-2.jpg"
             className="w-full object-cover h-screen lg:block md:hidden hidden"
           />
           <div className="w-full h-full bg-black opacity-20 absolute top-0 left-0" />
           <img
             alt=""
-            src="https://www.cpacanada.ca/-/media/site/operational/rg-research-guidance-and-support/images/02673-rg.jpg"
+            src="https://www.nrhosting.com/wp-content/uploads/2021/01/Information-Technology-868x490.jpg"
             className="lg:hidden w-full h-screen md:block hidden"
           />
           <img
