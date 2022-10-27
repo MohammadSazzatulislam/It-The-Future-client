@@ -34,7 +34,7 @@ const Header = () => {
 
 
   return (
-    <div className="navbar gradient text-white">
+    <div className="navbar bg-gradient-to-tl from-green-400 to-indigo-900 text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -55,7 +55,7 @@ const Header = () => {
           </label>
           <nav
             tabIndex={0}
-            className="menu menu-compact gradient font-semibold dropdown-content mt-5 gap-3 p-4 shadow bg-base-100 rounded-sm w-screen"
+            className="menu menu-compact bg-gradient-to-tl from-green-400 to-indigo-900 font-semibold dropdown-content mt-5 gap-3 p-4 shadow bg-base-100 rounded-sm w-screen"
           >
             <NavLink
               to="/home"

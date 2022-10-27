@@ -3,50 +3,30 @@ import React from 'react';
 const Home = () => {
 
     return (
-      <div>
-        <section>
-          <div className="w-full relative pb-10 px-6 xl:px-0">
-            <img
-              className="absolute w-full inset-0 h-full object-cover object-center"
-              src="https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=2000"
-              alt="we care family"
-            />
-
-            <div className="pt-32 lg:flex items-center relative z-10 container mx-auto">
-              <div className="w-full lg:w-1/2 h-full lg:pr-10 xl:pr-0">
-                <img
-                  tabIndex="0"
-                  role="img"
-                  aria-label="people smiling"
-                  className="mx-auto"
-                  src="https://cdn.tuk.dev/assets/templates/weCare/hero2-left.png"
-                  alt=""
-                />
-              </div>
-              <div role="contentinfo" className="w-full lg:w-1/2 h-full">
-                <p
-                  tabIndex="0"
-                  className="text-indigo-700 uppercase text-2xl mb-4"
-                >
-                  Qusique Tincidun sapien
-                </p>
-                <h1
-                  tabIndex="0"
-                  className="text-indigo-700 text-4xl lg:text-6xl uppercase font-black mb-8"
-                >
-                  IT THE FUTURE
-                </h1>
-                <p tabIndex="0" className="text-gray-800 font-regular mb-8">
-                  COMBINING SCIENCE WITH BEAUTY. L'Oreal Paris offerincare
-                  products is developed and rigorously tested with leading
-                  scientists. Indulge yourself in a luxurious and sensorial
-                  skincare experience. Cutting-edge innovations, proven by
-                  Science.
-                </p>
-              </div>
-            </div>
+      <div className="lg:max-w-full relative inset-0 md:max-w-full w-full mx-auto">
+        <div className="relative">
+          <img
+            alt=""
+            src="https://speakingdots.com/wp-content/uploads/2019/10/Artificial-intelligence.jpg"
+            className="w-full object-cover h-screen lg:block md:hidden hidden"
+          />
+          <div className="w-full h-full bg-black opacity-20 absolute top-0 left-0" />
+          <img
+            alt=""
+            src="https://www.cpacanada.ca/-/media/site/operational/rg-research-guidance-and-support/images/02673-rg.jpg"
+            className="lg:hidden w-full h-screen md:block hidden"
+          />
+          <img
+            alt=""
+            src="https://www.idgcdn.com.au/article/images/740x500/dimg/dreamstime_m_121137480.jpg"
+            className="lg:hidden w-full h-screen md:hidden block"
+          />
+          <div className="absolute lg:top-8 right-0 md:top-3 top-0 lg:px-7 md:px-10 px-4 py-4">
+            <p className="lg:text-6xl md:text-4xl text-3xl font-bold leading-9 text-white">
+              It The Future
+            </p>
           </div>
-        </section>
+        </div>
       </div>
     );
 };
