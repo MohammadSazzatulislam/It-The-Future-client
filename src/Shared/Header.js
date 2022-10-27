@@ -159,7 +159,7 @@ const Header = () => {
             <NavLink
               to="/home"
               className={({ isActive }) =>
-                isActive ? "bg-orange-600 glass" : undefined
+                isActive ? "bg-orange-600 " : undefined
               }
             >
               home
@@ -169,7 +169,7 @@ const Header = () => {
             <NavLink
               to="/courses"
               className={({ isActive }) =>
-                isActive ? "bg-orange-600 glass" : undefined
+                isActive ? "bg-orange-600 " : undefined
               }
             >
               Courses
@@ -179,7 +179,7 @@ const Header = () => {
             <NavLink
               to="/blog"
               className={({ isActive }) =>
-                isActive ? "bg-orange-600 glass" : undefined
+                isActive ? "bg-orange-600 " : undefined
               }
             >
               Blog
@@ -189,7 +189,7 @@ const Header = () => {
             <NavLink
               to="/faq"
               className={({ isActive }) =>
-                isActive ? "bg-orange-600 glass" : undefined
+                isActive ? "bg-orange-600 " : undefined
               }
             >
               FAQ

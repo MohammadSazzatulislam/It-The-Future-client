@@ -14,7 +14,7 @@ const Details = () => {
     
   });
 
-  const { id,  name, img, details, about, time, price } = detail;
+  const { id,  name, img, details, about, time, price, img1, img2, img3 } = detail;
 
   return (
     <div ref={componentRef}>
@@ -80,27 +80,18 @@ const Details = () => {
           {/* <!-- Preview Images Div For larger Screen--> */}
 
           <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-3 gap-2">
-            <div className=" w-ful lg:w-8/12 bg-gray-100 flex justify-center items-center">
-              <img className="h-full" src={img} alt="Wooden Chair Previw" />
+            <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
+              <img className="h-full" src={img} alt="" />
             </div>
             <div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-3">
-              <div className="bg-gray-100 flex justify-center items-center py-2">
-                <img
-                  src="https://i.ibb.co/0jX1zmR/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1-1.png"
-                  alt="Wooden chair - preview 1"
-                />
+              <div className="bg-gray-100 flex  justify-center items-center">
+                <img className="h-full" src={img1} alt="" />
               </div>
-              <div className="bg-gray-100 flex justify-center items-center py-2">
-                <img
-                  src="https://i.ibb.co/7zv1N5Q/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-2.png"
-                  alt="Wooden chair - preview 2"
-                />
+              <div className="bg-gray-100 flex justify-center items-center">
+                <img className="h-full" src={img2} alt="" />
               </div>
-              <div className="bg-gray-100 flex justify-center items-center py-2">
-                <img
-                  src="https://i.ibb.co/0jX1zmR/sam-moqadam-kvmds-Tr-GOBM-unsplash-removebg-preview-1-1.png"
-                  alt="Wooden chair- preview 3"
-                />
+              <div className="bg-gray-100 flex justify-center items-center">
+                <img className="h-full" src={img3} alt="" />
               </div>
             </div>
           </div>
