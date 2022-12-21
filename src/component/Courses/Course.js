@@ -37,11 +37,9 @@ const Course = ({ product }) => {
         </div>
         <div className="p-4">
           <h2 className="text-lg font-semibold">{name}</h2>
-
-          <div className="flex items-center justify-between py-4">
-            <h2 className="text-indigo-700 text-lg font-semibold">Price :</h2>
-            <h3 className="text-indigo-700 text-xl font-semibold">{price}</h3>
-          </div>
+          <h2 className="text-indigo-700 text-lg font-semibold">
+            Price : {price}
+          </h2>
         </div>
       </div>
     </div>
