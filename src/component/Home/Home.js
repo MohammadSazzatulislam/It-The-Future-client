@@ -40,9 +40,7 @@ const Home = () => {
                     loop: true,
                   }}
                 />
-                {/* Artificial Intelligence to write engaging and plagiarism-free
-                  articles in seconds. Generate content for your website that
-                  will boost your SEO on autopilot */}
+               
               </h1>
               <div className="mt-4">
                 <p className="text-md leading-7 text-center text-white">

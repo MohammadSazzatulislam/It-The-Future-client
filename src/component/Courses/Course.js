@@ -5,7 +5,7 @@ const Course = ({ product }) => {
   const { id, name, img, price } = product;
 
   return (
-    <div className="lg:w-80 md:w-80 w-full">
+    <div className="lg:w-80 md:w-80 w-full border drop-shadow-2xl">
       <div>
         <img alt="" src={img} className="w-full h-44" />
       </div>
