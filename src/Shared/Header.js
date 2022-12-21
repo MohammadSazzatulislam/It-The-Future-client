@@ -34,7 +34,7 @@ const Header = () => {
 
 
   return (
-    <div className="navbar bg-gradient-to-tl from-green-400 to-indigo-900 text-white">
+    <div className="navbar">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -59,36 +59,24 @@ const Header = () => {
           >
             <NavLink
               to="/home"
-              className={({ isActive }) =>
-                isActive ? "bg-orange-600 " : undefined
-              }
             >
               home
             </NavLink>
 
             <NavLink
               to="/courses"
-              className={({ isActive }) =>
-                isActive ? "bg-orange-600 " : undefined
-              }
             >
               Courses
             </NavLink>
 
             <NavLink
               to="/blog"
-              className={({ isActive }) =>
-                isActive ? "bg-orange-600 " : undefined
-              }
             >
               Blog
             </NavLink>
 
             <NavLink
-              to="/faq"
-              className={({ isActive }) =>
-                isActive ? "bg-orange-600 " : undefined
-              }
+              to="/faq"             
             >
               FAQ
             </NavLink>
@@ -158,39 +146,27 @@ const Header = () => {
           <li>
             <NavLink
               to="/home"
-              className={({ isActive }) =>
-                isActive ? "bg-orange-600 " : undefined
-              }
             >
               home
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/courses"
-              className={({ isActive }) =>
-                isActive ? "bg-orange-600 " : undefined
-              }
+              to="/courses"              
             >
               Courses
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/blog"
-              className={({ isActive }) =>
-                isActive ? "bg-orange-600 " : undefined
-              }
+              to="/blog"           
             >
               Blog
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/faq"
-              className={({ isActive }) =>
-                isActive ? "bg-orange-600 " : undefined
-              }
+              to="/faq"            
             >
               FAQ
             </NavLink>
@@ -205,28 +181,30 @@ const Header = () => {
               data-tip={user?.displayName}
               className="btn btn-ghost btn-circle mr-3 flex justify-center items-center tooltip tooltip-left avatar "
             >
-              <div className="w-10 rounded-full ">
-                {user?.photoURL ? (
-                  <img alt="profile picture" src={user?.photoURL} />
-                ) : (
-                  <div className="flex justify-center items-center mt-2">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                      />
-                    </svg>
-                  </div>
-                )}
-              </div>
+              {user?.photoURL ? (
+                <img
+                  className="w-10 border border-gray-400 rounded-full"
+                  alt=""
+                  src={user?.photoURL}
+                />
+              ) : (
+                <div className="flex w-10 rounded-full justify-center items-center mt-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                    />
+                  </svg>
+                </div>
+              )}
             </label>
             <NavLink to="/">
               <button
@@ -239,11 +217,6 @@ const Header = () => {
           </div>
         ) : (
           <>
-            <NavLink to="/signup">
-              <button className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm ">
-                Sign Up
-              </button>
-            </NavLink>
             <NavLink to="/login">
               <button className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold border-none rounded-sm ">
                 Log In

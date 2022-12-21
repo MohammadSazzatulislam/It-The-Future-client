@@ -8,9 +8,8 @@ import Main from "../Layout/Main";
 import ErrorPage from "../Shared/ErrorPage";
 import LogIn from "../Shared/LogIn";
 import SignUp from "../Shared/SignUp";
-import CheckOut from '../component/Courses/CheckOut';
-import PrivateRoute from './PrivateRoute';
-import Course from "../component/Courses/Course";
+import CheckOut from "../component/Courses/CheckOut";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -33,7 +32,7 @@ export const router = createBrowserRouter([
       {
         path: "/details/:id",
         loader: async ({ params }) =>
-          fetch(`https://it-the-future.vercel.app/product/${params.id}`),
+          fetch(`http://localhost:5000/product/${params.id}`),
         element: <Details></Details>,
       },
       {
@@ -55,7 +54,7 @@ export const router = createBrowserRouter([
       {
         path: "/checkout/:id",
         loader: async ({ params }) =>
-          fetch(`https://it-the-future.vercel.app/product/${params.id}`),
+          fetch(`http://localhost:5000/product/${params.id}`),
         element: (
           <PrivateRoute>
             <CheckOut></CheckOut>
@@ -65,3 +64,5 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+
+// https://it-the-future.vercel.app

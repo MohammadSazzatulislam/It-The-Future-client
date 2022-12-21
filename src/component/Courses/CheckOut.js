@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 const CheckOut = () => {
   const products = useLoaderData();
 
+  
+
   const { img, name, price } = products;
 
     const handleCheckOut = () => {

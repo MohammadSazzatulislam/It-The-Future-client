@@ -46,6 +46,24 @@ const LogIn = () => {
     logInUser(email, password)
       .then((result) => {
         const user = result.user;
+        const currentUser = {
+          email: user.email
+        }
+
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // local is the easitest but no the plase store jwt
+            localStorage.setItem('it-token', data.token)
+          })
+          .catch((err) => console.log(err));
+
         setUserInfo({ email: "", password: "" });
         navigate(from, { replace: true });
         setLoading(false);
