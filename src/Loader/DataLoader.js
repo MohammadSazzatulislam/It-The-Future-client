@@ -6,7 +6,7 @@ const DataLoader = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://it-the-future.vercel.app/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

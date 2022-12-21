@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
       {
         path: "/details/:id",
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/product/${params.id}`),
+          fetch(`https://it-the-future.vercel.app/product/${params.id}`),
         element: <Details></Details>,
       },
       {
@@ -54,7 +54,7 @@ export const router = createBrowserRouter([
       {
         path: "/checkout/:id",
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/product/${params.id}`),
+          fetch(`https://it-the-future.vercel.app/product/${params.id}`),
         element: (
           <PrivateRoute>
             <CheckOut></CheckOut>
@@ -65,4 +65,3 @@ export const router = createBrowserRouter([
   },
 ]);
 
-// https://it-the-future.vercel.app

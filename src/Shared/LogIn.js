@@ -47,10 +47,10 @@ const LogIn = () => {
       .then((result) => {
         const user = result.user;
         const currentUser = {
-          email: user.email
-        }
+          email: user.email,
+        };
 
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://it-the-future.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -60,7 +60,7 @@ const LogIn = () => {
           .then((res) => res.json())
           .then((data) => {
             // local is the easitest but no the plase store jwt
-            localStorage.setItem('it-token', data.token)
+            localStorage.setItem("it-token", data.token);
           })
           .catch((err) => console.log(err));
 
