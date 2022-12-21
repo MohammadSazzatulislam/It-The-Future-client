@@ -27,17 +27,21 @@ export const router = createBrowserRouter([
       },
       {
         path: "/courses",
-        element: <Courses></Courses>,
+        element: (
+          <PrivateRoute>
+            <Courses></Courses>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/details/:id",
         loader: async ({ params }) =>
-          fetch(`https://it-the-future.vercel.app/product/${params.id}`, {
-            headers: {
-              authorization: localStorage.getItem("it-token"),
-            },
-          }),
-        element: <Details></Details>,
+          fetch(`https://it-the-future.vercel.app/product/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <Details></Details>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/blog",
@@ -58,11 +62,7 @@ export const router = createBrowserRouter([
       {
         path: "/checkout/:id",
         loader: async ({ params }) =>
-          fetch(`https://it-the-future.vercel.app/product/${params.id}`, {
-            headers: {
-              authorization: localStorage.getItem("it-token"),
-            },
-          }),
+          fetch(`https://it-the-future.vercel.app/product/${params.id}`),
         element: (
           <PrivateRoute>
             <CheckOut></CheckOut>

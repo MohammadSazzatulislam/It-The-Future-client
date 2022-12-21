@@ -5,11 +5,7 @@ const DataLoader = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("https://it-the-future.vercel.app/products", {
-      headers: {
-        authorization: localStorage.getItem("it-token"),
-      },
-    })
+    fetch("https://it-the-future.vercel.app/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
